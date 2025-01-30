@@ -1,203 +1,287 @@
-% a mashup of hipstercv, friggeri and twenty cv
-% https://www.latextemplates.com/template/twenty-seconds-resumecv
-% https://www.latextemplates.com/template/friggeri-resume-cv
+%%%%%%%%%%%%%%%%%
+% This is an sample CV template created using altacv.cls
+% (v1.7.2, 28 August 2024) written by LianTze Lim (liantze@gmail.com). Compiles with pdfLaTeX, XeLaTeX and LuaLaTeX.
+%
+%% It may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%%%%%%%%%%%%%%%%
 
-\documentclass[lighthipster]{simplehipstercv}
-% available options are: darkhipster, lighthipster, pastel, allblack, grey, verylight, withoutsidebar
-% withoutsidebar
-\usepackage[utf8]{inputenc}
-\usepackage[default]{raleway}
-\usepackage[margin=1cm, a4paper]{geometry}
+%% Use the "normalphoto" option if you want a normal photo instead of cropped to a circle
+% \documentclass[10pt,a4paper,normalphoto]{altacv}
+
+\documentclass[10pt,a4paper,ragged2e,withhyper]{altacv}
+%% AltaCV uses the fontawesome5 and simpleicons packages.
+%% See http://texdoc.net/pkg/fontawesome5 and http://texdoc.net/pkg/simpleicons for full list of symbols.
+
+% Change the page layout if you need to
+\geometry{left=1.25cm,right=1.25cm,top=1.5cm,bottom=1.5cm,columnsep=1.2cm}
+
+% The paracol package lets you typeset columns of text in parallel
+\usepackage{paracol}
+
+% Change the font if you want to, depending on whether
+% you're using pdflatex or xelatex/lualatex
+% WHEN COMPILING WITH XELATEX PLEASE USE
+% xelatex -shell-escape -output-driver="xdvipdfmx -z 0" sample.tex
+\iftutex 
+  % If using xelatex or lualatex:
+  \setmainfont{Roboto Slab}
+  \setsansfont{Lato}
+  \renewcommand{\familydefault}{\sfdefault}
+\else
+  % If using pdflatex:
+  \usepackage[rm]{roboto}
+  \usepackage[defaultsans]{lato}
+  % \usepackage{sourcesanspro}
+  \renewcommand{\familydefault}{\sfdefault}
+\fi
+
+% Change the colours if you want to
+\definecolor{SlateGrey}{HTML}{2E2E2E}
+\definecolor{LightGrey}{HTML}{4e4e4e} %666666
+\definecolor{DarkPastelRed}{HTML}{0877d2} %450808 1354a4
+\definecolor{PastelRed}{HTML}{1354a4} %8F0D0D  12257c
+\definecolor{GoldenEarth}{HTML}{E7D192} 
+\colorlet{name}{black}
+\colorlet{tagline}{PastelRed}
+\colorlet{heading}{DarkPastelRed}
+\colorlet{headingrule}{GoldenEarth}
+\colorlet{subheading}{PastelRed}
+\colorlet{accent}{PastelRed}
+\colorlet{emphasis}{SlateGrey}
+\colorlet{body}{LightGrey}
+
+% Change some fonts, if necessary
+\renewcommand{\namefont}{\Huge\rmfamily\bfseries}
+\renewcommand{\personalinfofont}{\footnotesize}
+\renewcommand{\cvsectionfont}{\LARGE\rmfamily\bfseries}
+\renewcommand{\cvsubsectionfont}{\large\bfseries}
 
 
-%------------------------------------------------------------------ Variablen
+% Change the bullets for itemize and rating marker
+% for \cvskill if you want to
+\renewcommand{\cvItemMarker}{{\small\textbullet}}
+\renewcommand{\cvRatingMarker}{\faCircle}
+% ...and the markers for the date/location for \cvevent
+% \renewcommand{\cvDateMarker}{\faCalendar*[regular]}
+% \renewcommand{\cvLocationMarker}{\faMapMarker*}
 
-\newlength{\rightcolwidth}
-\newlength{\leftcolwidth}
-\setlength{\leftcolwidth}{0.23\textwidth}
-\setlength{\rightcolwidth}{0.75\textwidth}
 
-%------------------------------------------------------------------
-\title{New Simple CV}
-\author{\LaTeX{} Ninja}
-\date{June 2019}
+% If your CV/résumé is in a language other than English,
+% then you probably want to change these so that when you
+% copy-paste from the PDF or run pdftotext, the location
+% and date marker icons for \cvevent will paste as correct
+% translations. For example Spanish:
+% \renewcommand{\locationname}{Ubicación}
+% \renewcommand{\datename}{Fecha}
 
-\pagestyle{empty}
+
+%% Use (and optionally edit if necessary) this .tex if you
+%% want to use an author-year reference style like APA(6)
+%% for your publication list
+% \input{pubs-authoryear.tex}
+
+%% Use (and optionally edit if necessary) this .tex if you
+%% want an originally numerical reference style like IEEE
+%% for your publication list
+\input{pubs-num.tex}
+
+%% sample.bib contains your publications
+\addbibresource{sample.bib}
+% \usepackage{academicons}\let\faOrcid\aiOrcid
 \begin{document}
+\name{Théo HUET}
+\tagline{Étudiant en Master de Physique Théorique}
+%% You can add multiple photos on the left or right
+\photoR{3.3cm}{photoCV}
+% \photoL{2.5cm}{Yacht_High,Suitcase_High}
 
+\personalinfo{%
+  % Not all of these are required!
+  \email{theo6huet@gmail.com}
+  \phone{+33 7 69 66 28 13}
+  %\mailaddress{5 Parc Delage Les Mureaux 78130}
+  \location{Yvelines, France}
+  %\homepage{www.homepage.com}
+  % \twitter{@twitterhandle}
+  %\xtwitter{@x-handle}
+  \\
+  \linkedin{théo-huet-9a2bb0347}
+  \github{TheoHUETQC}
+  %\orcid{0000-0000-0000-0000}
+  
+  %% You can add your own arbitrary detail with
+  %% \printinfo{symbol}{detail}[optional hyperlink prefix]
+  % \printinfo{\faPaw}{Hey ho!}[https://example.com/]
 
-\thispagestyle{empty}
-%-------------------------------------------------------------
-
-\section*{Start}
-
-\simpleheader{headercolour}{Théo}{HUET}{Étudiant en Master de physique théorique}{white}
-
-
-
-%------------------------------------------------
-
-% this has to be here so the paracols starts..
-\subsection*{}
-\vspace{4em}
-
-\setlength{\columnsep}{1.5cm}
-\columnratio{0.23}[0.75]
-\begin{paracol}{2}
-\hbadness5000
-%\backgroundcolor{c[1]}[rgb]{1,1,0.8} % cream yellow for column-1 %\backgroundcolor{g}[rgb]{0.8,1,1} % \backgroundcolor{l}[rgb]{0,0,0.7} % dark blue for left margin
-
-\paracolbackgroundoptions
-
-% 0.9,0.9,0.9 -- 0.8,0.8,0.8
-
-
-\footnotesize
-{\setasidefontcolour
-\flushright
-\begin{center}
-    \roundpic{jack.jpg}
-\end{center}
-
-\bg{cvgreen}{white}{About me}\\[0.5em]
-
-{\footnotesize
-\lorem\lorem\lorem}
-\bigskip
-
-\bg{cvgreen}{white}{personal} \\[0.5em]
-Jack Sparrow
-
-nationality: English 
-
-1690
-
-\bigskip
-
-\bg{cvgreen}{white}{Areas of specialization} \\[0.5em]
-
-Privateering ~•~ Bucaneering ~•~ Parler ~•~ Rum
-
-\bigskip
-
-
-
-\bigskip
-
-\bg{cvgreen}{white}{Interests}\\[0.5em]
-
-\lorem
-\bigskip
-
-\bg{cvgreen}{white}{Interests}\\[0.5em]
-
-\texttt{R} ~/~ \texttt{Android} ~/~ \texttt{Linux}
-
-\texttt{R} ~/~ \texttt{Android} ~/~ \texttt{Linux}
-
-\texttt{R} ~/~ \texttt{Android} ~/~ \texttt{Linux}
-
-\vspace{4em}
-
-\infobubble{\faAt}{cvgreen}{white}{jack@sparrow.org}
-\infobubble{\faTwitter}{cvgreen}{white}{@sparrow}
-\infobubble{\faFacebook}{cvgreen}{white}{Jack Sparrow}
-\infobubble{\faGithub}{cvgreen}{white}{sparrow}
-
-\phantom{turn the page}
-
-\phantom{turn the page}
+  %% Or you can declare your own field with
+  %% \NewInfoFiled{fieldname}{symbol}[optional hyperlink prefix] and use it:
+  % \NewInfoField{gitlab}{\faGitlab}[https://gitlab.com/]
+  % \gitlab{your_id}
+  %%
+  %% For services and platforms like Mastodon where there isn't a
+  %% straightforward relation between the user ID/nickname and the hyperlink,
+  %% you can use \printinfo directly e.g.
+  % \printinfo{\faMastodon}{@username@instace}[https://instance.url/@username]
+  %% But if you absolutely want to create new dedicated info fields for
+  %% such platforms, then use \NewInfoField* with a star:
+  % \NewInfoField*{mastodon}{\faMastodon}
+  %% then you can use \mastodon, with TWO arguments where the 2nd argument is
+  %% the full hyperlink.
+  % \mastodon{@username@instance}{https://instance.url/@username}
 }
-%-----------------------------------------------------------
+
+\makecvheader
+%% Depending on your tastes, you may want to make fonts of itemize environments slightly smaller
+% \AtBeginEnvironment{itemize}{\small}
+
+%% Set the left/right column width ratio to 6:4.
+\columnratio{0.6}
+
+% Start a 2-column paracol. Both the left and right columns will automatically
+% break across pages if things get too long.
+\begin{paracol}{2}
+\cvsection{EXPÉRIENCES}
+
+\cvevent{Stage de recherche de fin de Licence}{Laboratoire de Physique Théorique et Modélisation (LPTM)\\
+CY Cergy Paris Université et CNRS}{Mai 2024}{Cergy-Pontoise (95)}
+\begin{itemize}
+    \item Étude de la mesure quantique, application à l’effet Zénon Quantique avec Monsieur Fratino.
+    \item https://github.com/TheoHuetQC/intership-report-zenon-effect
+\end{itemize}
+
+\divider
+
+\cvevent{Saisonnier, Restauration du Stade Léo Lagrange}{Mairie Des Mureaux}{été 2021}{Les Mureaux (78)}
+\begin{itemize}
+    \item Peinture, ponçage, réalisation de photo et d'un diaporama.
+\end{itemize}
+
+\medskip
+
+\cvsection{FORMATION}
+\cvevent{Master Physique option Physique Théorique}{CY Cergy Paris Université -- Cergy-Pontoise (95)}{2024 -- Maintenant}{}
+option Informatique Quantique
+
+\divider
+
+\cvevent{Double Licence mention Mathématiques et Physique}{CY Cergy Paris Université -- Cergy-Pontoise (95)}{2021 -- 2024}{}
+Mention assez bien \\
+1ère et 2ème année en Cycle Universitaire Préparatoire aux Grandes Ecoles d’ingénieurs (CUPGE - MP)
+
+\divider
+
+\cvevent{Baccalauréat général spécialité Mathématiques -- Physique}{Lycée agricole et horticole -- Saint-Germain-en-Laye (78)}{2021}{}
+Option Maths experts, Mention assez bien
+
+\medskip
+
+\cvsection{Projets} %projet generateur de mot de passe et projet informatique avec kylian
+
+\cvevent{Générateur de mot de passe}{https://github.com/TheoHuetQC/passworld-generator}{}{}
+\begin{itemize}
+\item Application developpé avec Python, Tkinter et du hachage.
+\end{itemize}
+
+% Adapted from @Jake's answer from http://tex.stackexchange.com/a/82729/226
+% \wheelchart{outer radius}{inner radius}{
+% comma-separated list of value/text width/color/detail}
+%\wheelchart{1.5cm}{0.5cm}{%
+%  6/8em/accent!30/{Sleep,\\beautiful sleep},
+%  3/8em/accent!40/Hopeful novelist by night,
+%  8/8em/accent!60/Daytime job,
+%  2/10em/accent/Sports and relaxation,
+%  5/6em/accent!20/Spending time with family
+%}
+
+% use ONLY \newpage if you want to force a page break for
+% ONLY the current column
+
+%% Switch to the right column. This will now automatically move to the second
+%% page if the content is too long.
 \switchcolumn
 
-\small
-\section*{Short Resumé}
+\cvsection{COMPÉTENCES}
 
-\begin{tabular}{r| p{0.5\textwidth} c}
-    \cvevent{2018--2021}{Captain of the Black Pearl}{Lead}{East Indies \color{cvred}}{Finally got the goddamn ship back.\lorem\lorem\lorem}{disney.png} \\
-    \cvevent{2016--2017}{Captain of the Black Pearl}{Lead}{Tortuga \color{cvred}}{Found a secret treasure, lost the ship. \lorem\lorem}{medal.jpeg}
+%\cvachievement{\faTrophy}{Fantastic Achievement}{and some details about it}
+Langages informatique :\\ \medskip
+\cvskill{Python}{4.5}
+\medskip
+\cvskill{\textit{C}}{1}
+\medskip
+\cvskill{\LaTeX}{3} 
+
+\divider
+
+Bureautique :
+\\ \medskip
+\cvskill{Microsoft Office}{5}
+\medskip
+\cvskill{Google Workspace}{4}
+\medskip
+\cvskill{Da Vinci Resolve}{3} 
+\medskip
+\cvskill{Photoshop}{3}
+\medskip
+\cvskill{Modélisation 3D}{2}
+
+\medskip
+
+\cvsection{QUALITÉS}
+%% Yeah I didn't spend too much time making all the
+%% spacing consistent... sorry. Use \smallskip, \medskip,
+%% \bigskip, \vspace etc to make adjustments.
+
+% Don't overuse these \cvtag boxes — they're just eye-candies and not essential. If something doesn't fit on a single line, it probably works better as part of an itemized list (probably inlined itemized list), or just as a comma-separated list of strengths.
+
+% The `ragged2e` document class option might cause automatic linebreaks between \cvtag to fail.
+% Either remove the ragged2e option; or 
+% add \LaTeXraggedright in the paragraph for these \cvtag
+{\LaTeXraggedright
+\cvtag{Patience}
+\cvtag{Curiosité}
+\cvtag{Autonomie}
+\cvtag{Créativité} %\cvtag{créativité \& réactivité}
+\par}
+
+\medskip
+
+\cvsection{Languages}
+
+\begin{table}[h]
+\begin{tabular}{l@{\hskip 0.8in}l@{\hskip 0.5in}l}
+Français   &   & Maternelle  \\
+\multicolumn{3}{l}{\divider} \\
+Anglais    &  \quad & Niveau B2          \\
+\multicolumn{3}{l}{\divider} \\
+Espagnol   &  \quad & Niveau A2          \\
+\multicolumn{3}{l}{\divider} \\
+Russe      &  \quad & Niveau A1         
 \end{tabular}
-\vspace{3em}
+\end{table}
 
-\begin{minipage}[t]{0.35\textwidth}
-\section*{Degrees}
-\begin{tabular}{r p{0.6\textwidth} c}
-    \cvdegree{1710}{Captain}{Certified}{Tortuga Uni \color{headerblue}}{}{disney.png} \\
-    \cvdegree{1715}{Bucaneering}{M.A.}{London \color{headerblue}}{}{medal.jpeg} \\
-    \cvdegree{1720}{Bucaneering}{B.A.}{London \color{headerblue}}{}{medal.jpeg}
+\cvsection{Loisirs}
+
+\begin{table}[h]
+\begin{tabular}{l}
+Développement en Python \\
+\divider                \\
+Dessin                  \\
+\divider                \\
+Jeux vidéos             \\
+\divider                \\
+Bricolage               \\
+\divider                \\
+Vélo                   
 \end{tabular}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.3\textwidth}
-\section*{Programming}
-\begin{tabular}{r @{\hspace{0.5em}}l}
-     \bg{skilllabelcolour}{iconcolour}{html, css} &  \barrule{0.4}{0.5em}{cvpurple}\\
-     \bg{skilllabelcolour}{iconcolour}{\LaTeX} & \barrule{0.55}{0.5em}{cvgreen} \\
-     \bg{skilllabelcolour}{iconcolour}{python} & \barrule{0.5}{0.5em}{cvpurple} \\
-     \bg{skilllabelcolour}{iconcolour}{R} & \barrule{0.25}{0.5em}{cvpurple} \\
-     \bg{skilllabelcolour}{iconcolour}{javascript} & \barrule{0.1}{0.5em}{cvpurple} \\
-\end{tabular}
-\end{minipage}
-
-\section*{Curriculum}
-\begin{tabular}{r| p{0.5\textwidth} c}
-    \cvevent{2021--2024}{Double Licence mention Mathématiques et Physique}{CY Cergy Paris Université}{Cergy-Pontoise (95) 
-    \color{cvred}}{Mention Assez Bien. \lorem}{disney.png} \\ %avec S2 CUPGE MP
-    \cvevent{2021}{Baccalauréat général spécialité Mathématiques - Physique}{Lycée agricole et horticole}{Saint-Germain-en-Laye (78) \color{cvred}}{Option Maths experts, Mention assez bien  \lorem}{medal.jpeg} \\
-\end{tabular}
-\vspace{3em}
-
-\begin{minipage}[t]{0.3\textwidth}
-\section*{Certificates \& Grants}
-\begin{tabular}{>{\footnotesize\bfseries}r >{\footnotesize}p{0.55\textwidth}}
-    1708 & Captain's Certificates \\
-    1710 & Travel grant \\
-    1715--1716 & Grant from the Pirate's Company
-\end{tabular}
-\bigskip
-
-\section*{Languages}
-\begin{tabular}{l | ll}
-\textbf{English} & C2 & {\phantom{x}\footnotesize mother tongue} \\
-\textbf{French} & C2 & \pictofraction{\faCircle}{cvgreen}{3}{black!30}{1}{\tiny} \\
-\textbf{Spanish} & C2 & \pictofraction{\faCircle}{cvgreen}{1}{black!30}{3}{\tiny} \\
-\textbf{Italian} & C2 & \pictofraction{\faCircle}{cvgreen}{3}{black!30}{1}{\tiny}
-\end{tabular}
-\bigskip
-
-\end{minipage}\hfill
-\begin{minipage}[t]{0.3\textwidth}
-\section*{Publications}
-\begin{tabular}{>{\footnotesize\bfseries}r >{\footnotesize}p{0.7\textwidth}}
-    1729 & \emph{How I almost got killed by Lady Swan}, Tortuga Printing Press. \\
-    1720 & ``Privateering for Beginners'', in: \emph{The Pragmatic Pirate} (1/1720).
-\end{tabular}
-\bigskip
-
-\section*{Talks}
-\begin{tabular}{>{\footnotesize\bfseries}r >{\footnotesize}p{0.6\textwidth}}
-    Nov. 1726 & ``How I lost my ship (\& and how to get it back)'', at: \emph{Annual Pirate's Conference} in Tortuga, Nov. 1726.
-\end{tabular}
-\end{minipage}
-
-
-
-
-
-
-\vfill{} % Whitespace before final footer
-
-%----------------------------------------------------------------------------------------
-%	FINAL FOOTER
-%----------------------------------------------------------------------------------------
-\setlength{\parindent}{0pt}
-\begin{minipage}[t]{\rightcolwidth}
-\begin{center}\fontfamily{\sfdefault}\selectfont \color{black!70}
-{\small Jack Sparrow \icon{\faEnvelopeO}{cvgreen}{} The Black Pearl \icon{\faMapMarker}{cvgreen}{} Tortuga \icon{\faPhone}{cvgreen}{} 0099/333 5647380 \newline\icon{\faAt}{cvgreen}{} \protect\url{jack@sparrow.com}
-}
-\end{center}
-\end{minipage}
+\end{table}
 
 \end{paracol}
+
 
 \end{document}
